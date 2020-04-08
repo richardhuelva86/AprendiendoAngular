@@ -1,0 +1,16 @@
+<div class="loading" *ngIf="!articles">Loading...</div>
+<div class="loading" *ngIf="articles && articles.length == 0">No hay artículos para mostrar</div>
+<div *ngIf="articles">
+<div  *ngFor="let article of articles">
+    <article>
+        <img class="mini-image" *ngIf="article.image" src="{{url + 'get-image/' + article.image}}"/>
+        <h2>{{article.title}}</h2>
+        <span>{{article.date | amLocale: 'es' | amTimeAgo}}</span>
+        <a class="mas" [routerLink]="['/blog/articulo', article._id]">Leer más</a>
+    </article>
+    <div class="separator">
+    </div>
+</div>
+
+
+</div>

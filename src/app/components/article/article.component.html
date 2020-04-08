@@ -1,0 +1,16 @@
+<app-slider [nombre]="'ARTICLE'" [size]="'small'"></app-slider>
+
+<div class="center">
+    <section *ngIf="article" id="content">
+        <img *ngIf="article.image" src="{{url + 'get-image/' + article.image}}" class="articleInfoImg"/>
+        <h2>{{article.title}}</h2>
+        <span>{{article.date | amLocale: 'es' | amTimeAgo}}</span>
+        <p [innerHTML]="article.content">
+            <!-- {{article.content}} -->
+        </p>
+        <div class="btnGroup">
+            <a class="btnEdit"  href="#" [routerLink]="['/blog/edit',article._id]">Editar</a>
+            <a class="btnRemove"  href="#" (click)="delete(article._id)">Eliminar</a>
+        </div>
+    </section>
+</div>

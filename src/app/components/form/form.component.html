@@ -1,0 +1,53 @@
+<app-slider [nombre]="'FORM'"></app-slider>
+
+<div class="center">
+  <section id="content">
+    <h1 class="subheader">Form</h1>
+
+    <!-- <div id="datos-al-vuelo" *ngIf="user.nombre">
+      <h2>Datos de usuario</h2>
+
+      <ul>
+        <li>Nombre: {{user.nombre}}</li>
+        <li>Apellidos: {{user.apellidos}}</li>
+        <li>Bio: {{user.bio}}</li>
+        <li>Género: {{user.genero}}</li>
+      </ul>
+
+    </div> -->
+
+    <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="user.nombre" required pattern="[a-zA-Z]+"/>
+        <small *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</small>
+      </div>
+      <div class="form-group">
+        <label for="apellidos">Apellidos</label>
+        <input type="text" name="apellidos" #apellidos="ngModel" [(ngModel)]="user.apellidos" required/>
+        <small *ngIf="!apellidos.valid && apellidos.touched">Los apellidos no son válidos</small>
+      </div>
+      <div class="form-group">
+        <label for="bio">Bio</label>
+        <textarea type="textarea" name="bio" #bio="ngModel" [(ngModel)]="user.bio" required></textarea>
+        <small *ngIf="!bio.valid && bio.touched">Bio no es válida</small>
+      </div>
+
+      <div class="form-group">
+        <input type="radio" name="genero" value="hombre" #genero="ngModel" [(ngModel)]="user.genero" required/>Hombre
+        <input type="radio" name="genero" value="mujer" #genero="ngModel" [(ngModel)]="user.genero" />Mujer
+        <input type="radio" name="genero" value="otro" #genero="ngModel" [(ngModel)]="user.genero" />Otro
+
+        <small *ngIf="!genero.valid && genero.touched">Género no es válido</small>
+      </div>
+      <input type="submit" value="Enviar" [disabled]="userForm.invalid"/>
+
+      <h2>Eventos</h2>
+      <button (click)="hasDadoClick()">Dale click</button>
+      <input type="text" name="campo" [(ngModel)]="campo" (blur)="hasSalido()"/>
+      {{campo}}
+
+    </form>
+
+  </section>
+</div>

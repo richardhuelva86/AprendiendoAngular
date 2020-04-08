@@ -1,0 +1,20 @@
+<h1>{{pageTitle}}</h1>
+<form class="create" #createForm="ngForm" (ngSubmit)="submit()">
+    <label for="title">Título</label>
+    <input type="text" [(ngModel)]="article.title" #title="ngModel" name="title" required >
+    <small *ngIf="!title.valid && title.touched">El título no es válido</small>
+    <label for="content">Contenido</label>
+    <ejs-richtexteditor id='defaultRTE' [toolbarSettings]="tools" [(ngModel)]="article.content" #content="ngModel" name="content" required></ejs-richtexteditor>
+    <small *ngIf="!content.valid && content.touched">El contenido no es válido</small>
+    <!-- <input type="file" name="file0"> -->
+    <div *ngIf="isEditable">
+        <img class="mini-image" *ngIf="article.image" src="{{url + 'get-image/' + article.image}}"/>
+        <p>La imagen superior es la cargada actualmente</p>
+    </div>
+        <angular-file-uploader
+            [config]="afuConfig"
+            (ApiResponse)="imageUpload($event)">
+           >
+        </angular-file-uploader>
+    <input type="submit" value="Enviar" [disabled]="createForm.invalid">
+</form>

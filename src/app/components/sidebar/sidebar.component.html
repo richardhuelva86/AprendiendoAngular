@@ -1,0 +1,9 @@
+<aside class="sidebar">
+    <h3>Buscador</h3>
+    <p>Encuentra el artículo que buscas</p>
+    <form #searchForm="ngForm" (ngSubmit)="submit()">
+        <i class="icon"></i>
+        <input class="search" [(ngModel)]="search" type="text" name="search">
+        <input type="submit" class="btn-search" value="Buscar">
+    </form>
+</aside>
